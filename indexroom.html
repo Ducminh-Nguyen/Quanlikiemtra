@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <link rel="stylesheet" href="./assets/css/indexroom.css">
+  </head>
+  <body>
+    <div class="container">
+      <!-- Header -->
+      <header class="header">
+        <h1>Hệ thống Quản lý Lịch Bài Kiểm Tra</h1>
+        <div class="header-actions">
+          <button
+            onclick="window.location.href='add-room.html'"
+            class="btn btn-add"
+          >
+            + Đặt lịch phòng
+          </button>
+          <button
+            onclick="window.location.href='profile.html'"
+            class="btn btn-secondary"
+          >
+            👤 Thông tin cá nhân
+          </button>
+          <span id="userEmail"></span>
+          <button id="logoutBtn" class="btn btn-secondary">Đăng xuất</button>
+        </div>
+      </header>
+
+      <!-- Main Content -->
+      <main class="main-content">
+        <section class="form-section">
+          <div id="roomForm">
+            <div class="form-row">
+              <div class="form-group">
+                <label for="roomName">Bài kiểm tra</label>
+                <select id="roomName" required>
+                  <option value="">-- Chọn phòng học --</option>
+                  <option value="Bài kiểm tra  1">Bài kiểm tra 1</option>
+                  <option value="Bài kiểm tra ">Bài kiểm tra  2</option>
+                  <option value="Bài kiểm tra  3">Bài kiểm tra  3</option>
+                  <option value="Bài kiểm tra  4">Bài kiểm tra  4</option>
+                  <option value="Bài kiểm tra  5">Bài kiểm tra  5</option>
+                  <option value="Bài kiểm tra  6">Bài kiểm tra  6</option>
+                  <option value="Bài kiểm tra  7">Bài kiểm tra  7</option>
+                  <option value="Bài kiểm tra  8">Bài kiểm tra  8</option>
+                  <option value="Bài kiểm tra  9">Bài kiểm tra  9</option>
+                  <option value="Bài kiểm tra  10">Bài kiểm tra  10</option>
+                  <option value="Bài kiểm tra  11">Bài kiểm tra  11</option>
+                  <option value="Bài kiểm tra  12">Bài kiểm tra  12</option>
+                  <option value="Bài kiểm tra  13">Bài kiểm tra  13</option>
+                  <option value="Bài kiểm tra  14">Bài kiểm tra  14</option>
+                  <option value="Bài kiểm tra  khác">Bài kiểm tra  khác</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="bookingDate">Ngày sử dụng:</label>
+                <input type="date" id="bookingDate" required />
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="startTime">Thời gian bắt đầu:</label>
+                <input type="time" id="startTime" required />
+              </div>
+              <div class="form-group">
+                <label for="endTime">Thời gian kết thúc:</label>
+                <input type="time" id="endTime" required />
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="purpose">Mục đích sử dụng:</label>
+              <textarea
+                id="purpose"
+                rows="4"
+                required
+                placeholder="Ví dụ:Toán,Tiếng Anh,Văn..."
+              ></textarea>
+            </div>
+            <div class="form-group">
+              <label for="notes">Ghi chú:</label>
+              <textarea
+                id="notes"
+                rows="3"
+                placeholder="Ghi chú thêm (không bắt buộc)"
+              ></textarea>
+            </div>
+            <div class="form-actions">
+              <button type="button" id="addBtn" class="btn btn-primary">
+                Đặt lịch bài kiểm tra
+              </button>
+              <button
+                type="button"
+                class="btn btn-secondary"
+                onclick="window.location.href='.index.html'"
+              >
+                Hủy
+              </button>
+            </div>
+          </div>
+        </section>
+      </main>
+
+    </div>
+  </body>
+</html>

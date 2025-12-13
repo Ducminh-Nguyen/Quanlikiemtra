@@ -22,38 +22,87 @@
 
             <form>
               <label>Tên tài khoản (Viết liền không dấu)</label>
-              <input type="text" placeholder="" />
+              <input type="text" class="" />
 
               <label>Email</label>
-              <input type="email" placeholder="" />
+              <input type="email" class="username" />
 
               <label>Số điện thoại</label>
-              <input type="text" placeholder="" />
+              <input type="text" class="" />
 
               <label>Mật khẩu</label>
-              <input type="password" placeholder="" />
+              <input type="password" class="password" />
 
               <label>Nhập lại mật khẩu</label>
-              <input type="password" placeholder="" />
+              <input type="password" class="confirmpassword" />
 
               <div class="checkbox">
                 <input type="checkbox" />
                 <p>
                   Chấp nhận
                   <a href="#"
-                    >chính sách và điều khoản sử dụng của Quản lí bài kiểm tra.com</a
+                    >chính sách và điều khoản sử dụng của Quản lí bài kiểm
+                    tra.com</a
                   >
                 </p>
               </div>
 
-              <button class="btn">Đăng ký</button>
+              <button type="button" class="btn">Đăng ký</button>
             </form>
           </div>
 
           <p class="login-link">
-            Bạn đã có tài khoản? <a href="#">Đăng nhập ngay</a>
+            Bạn đã có tài khoản? <a href="./login.html">Đăng nhập ngay</a>
           </p>
         </div>
+        <script type="module">
+          // Import the functions you need from the SDKs you need
+          import { initializeApp } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-app.js";
+          import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-analytics.js";
+          import {
+            getAuth,
+            createUserWithEmailAndPassword,
+          } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-auth.js";
+          // TODO: Add SDKs for Firebase products that you want to use
+          // https://firebase.google.com/docs/web/setup#available-libraries
+
+          // Your web app's Firebase configuration
+          // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+          const firebaseConfig = {
+            apiKey: "AIzaSyAmdUsIpWyY7FYxX1j0PZrwVaiE1KWRLu8",
+            authDomain: "spck-84726.firebaseapp.com",
+            projectId: "spck-84726",
+            storageBucket: "spck-84726.firebasestorage.app",
+            messagingSenderId: "377528554028",
+            appId: "1:377528554028:web:940f3092c9c7625f197789",
+            measurementId: "G-XY9FXY7MQK",
+          };
+
+          // Initialize Firebase
+          const app = initializeApp(firebaseConfig);
+          const getauth = getAuth(app);
+          const valuebtn = document.querySelector(".btn");
+          function handleregister() {
+            const valueUser = document.querySelector(".username").value;
+            const valuePass = document.querySelector(".password").value;
+            const valueConfirm =
+              document.querySelector(".confirmpassword").value;
+            createUserWithEmailAndPassword(getauth, valueUser, valuePass)
+              .then((userCredential) => {
+                // Signed up
+                const user = userCredential.user;
+                console.log(userCredential.user);
+                window.location.href = "login.html";
+              })
+              .catch((error) => {
+                const errorCode = error.code;
+                const errorMessage = error.message;
+                // ..
+              });
+          }
+
+          valuebtn.addEventListener("click", handleregister);
+        </script>
       </body>
     </html>
   </body>
