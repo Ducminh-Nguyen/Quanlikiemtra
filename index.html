@@ -9,11 +9,11 @@
 <body>
     <div class="header">
         <div class="header-left">
-            Hệ thống Quản lý Lịch Bài Kiểm Tra
+            Hệ thống Quản lý Bài Kiểm Tra
         </div>
 
         <div class="header-right">
-            <button class="btn btn-orange">+ Đặt lịch bài kiểm tra</button>
+            <button class="btn btn-orange">+ Đặt  bài kiểm tra</button>
             <button class="btn btn-outline">Thông tin cá nhân</button>
             <span class="email"></span>
             <a href="./login.html" class="logout">Đăng xuất</a>
@@ -29,9 +29,16 @@
         >
 
         <div class="empty">
-            Chưa có lịch bài kiểm tra nào.
+            Chưa có  bài kiểm tra nào.
         </div>
     </div>
+    <script type = "module">
+         onAuthStateChanged(window.auth, (user) => {
+                if (!user) {
+                    window.location.href = ".login.html";
+                }
+            });
+    </script>
     
 </body>
 </html>
