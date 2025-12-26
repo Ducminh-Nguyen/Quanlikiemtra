@@ -4,8 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link rel="stylesheet" href="./assets/css/style.css">
-    <link rel="stylesheet" href="./assets/css/indexroom.css">
+    <link rel="stylesheet" href="./assets/css/style.css" />
+    <link rel="stylesheet" href="./assets/css/indexroom.css" />
   </head>
   <body>
     <div class="container">
@@ -14,7 +14,7 @@
         <h1>Hệ thống Quản lý Lịch Bài Kiểm Tra</h1>
         <div class="header-actions">
           <button
-            onclick="window.location.href='add-room.html'"
+            onclick="window.location.href='indexroom.html'"
             class="btn btn-add"
           >
             + Đặt lịch bài kiểm tra
@@ -26,7 +26,9 @@
             👤 Thông tin cá nhân
           </button>
           <span id="userEmail"></span>
-          <button id="logoutBtn" class="btn btn-secondary" a href ="login.html">Đăng xuất</button>
+          <button id="logoutBtn" class="btn btn-secondary" a href="login.html">
+            Đăng xuất
+          </button>
         </div>
       </header>
 
@@ -38,22 +40,22 @@
               <div class="form-group">
                 <label for="roomName">Bài kiểm tra</label>
                 <select id="roomName" required>
-                  <option value="">-- Chọn phòng học --</option>
+                  <option value="">-- Chọn bài kiểm tra --</option>
                   <option value="Bài kiểm tra  1">Bài kiểm tra 1</option>
-                  <option value="Bài kiểm tra ">Bài kiểm tra  2</option>
-                  <option value="Bài kiểm tra  3">Bài kiểm tra  3</option>
-                  <option value="Bài kiểm tra  4">Bài kiểm tra  4</option>
-                  <option value="Bài kiểm tra  5">Bài kiểm tra  5</option>
-                  <option value="Bài kiểm tra  6">Bài kiểm tra  6</option>
-                  <option value="Bài kiểm tra  7">Bài kiểm tra  7</option>
-                  <option value="Bài kiểm tra  8">Bài kiểm tra  8</option>
-                  <option value="Bài kiểm tra  9">Bài kiểm tra  9</option>
-                  <option value="Bài kiểm tra  10">Bài kiểm tra  10</option>
-                  <option value="Bài kiểm tra  11">Bài kiểm tra  11</option>
-                  <option value="Bài kiểm tra  12">Bài kiểm tra  12</option>
-                  <option value="Bài kiểm tra  13">Bài kiểm tra  13</option>
-                  <option value="Bài kiểm tra  14">Bài kiểm tra  14</option>
-                  <option value="Bài kiểm tra  khác">Bài kiểm tra  khác</option>
+                  <option value="Bài kiểm tra ">Bài kiểm tra 2</option>
+                  <option value="Bài kiểm tra  3">Bài kiểm tra 3</option>
+                  <option value="Bài kiểm tra  4">Bài kiểm tra 4</option>
+                  <option value="Bài kiểm tra  5">Bài kiểm tra 5</option>
+                  <option value="Bài kiểm tra  6">Bài kiểm tra 6</option>
+                  <option value="Bài kiểm tra  7">Bài kiểm tra 7</option>
+                  <option value="Bài kiểm tra  8">Bài kiểm tra 8</option>
+                  <option value="Bài kiểm tra  9">Bài kiểm tra 9</option>
+                  <option value="Bài kiểm tra  10">Bài kiểm tra 10</option>
+                  <option value="Bài kiểm tra  11">Bài kiểm tra 11</option>
+                  <option value="Bài kiểm tra  12">Bài kiểm tra 12</option>
+                  <option value="Bài kiểm tra  13">Bài kiểm tra 13</option>
+                  <option value="Bài kiểm tra  14">Bài kiểm tra 14</option>
+                  <option value="Bài kiểm tra  khác">Bài kiểm tra khác</option>
                 </select>
               </div>
               <div class="form-group">
@@ -103,7 +105,39 @@
           </div>
         </section>
       </main>
-
     </div>
+    <script type="module">
+      // Import the functions you need from the SDKs you need
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-app.js";
+      import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-analytics.js";
+      // TODO: Add SDKs for Firebase products that you want to use
+      // https://firebase.google.com/docs/web/setup#available-libraries
+
+      // Your web app's Firebase configuration
+      // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+      const firebaseConfig = {
+        apiKey: "AIzaSyAmdUsIpWyY7FYxX1j0PZrwVaiE1KWRLu8",
+        authDomain: "spck-84726.firebaseapp.com",
+        projectId: "spck-84726",
+        storageBucket: "spck-84726.firebasestorage.app",
+        messagingSenderId: "377528554028",
+        appId: "1:377528554028:web:940f3092c9c7625f197789",
+        measurementId: "G-XY9FXY7MQK",
+      };
+
+      // Initialize Firebase
+      const app = initializeApp(firebaseConfig);
+      const analytics = getAnalytics(app);
+
+       document.getElementById("addBtn").addEventListener("click", async () => {
+        const roomName = document.getElementById("roomName").value;
+        const bookingDate = document.getElementById("bookingDate").value;
+        const startTime = document.getElementById("startTime").value;
+        const endTime = document.getElementById("endTime").value;
+        const purpose = document.getElementById("purpose").value.trim();
+        const notes = document.getElementById("notes").value.trim();
+       })
+
+    </script>
   </body>
 </html>
