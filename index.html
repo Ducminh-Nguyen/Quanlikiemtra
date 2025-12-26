@@ -1,44 +1,68 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link rel="stylesheet" href="./assets/css/index.css">
-</head>
-<body>
+    <link rel="stylesheet" href="./assets/css/index.css" />
+  </head>
+  <body>
     <div class="header">
-        <div class="header-left">
-            Hệ thống Quản lý Bài Kiểm Tra
-        </div>
+      <div class="header-left">Hệ thống Quản lý Bài Kiểm Tra</div>
 
-        <div class="header-right">
-            <button class="btn btn-orange">+ Đặt  bài kiểm tra</button>
-            <button class="btn btn-outline">Thông tin cá nhân</button>
-            <span class="email"></span>
-            <a href="./login.html" class="logout">Đăng xuất</a>
-        </div>
+      <div class="header-right">
+        <button class="btn btn-orange">+ Đặt bài kiểm tra</button>
+        <button class="btn btn-outline">Thông tin cá nhân</button>
+        <span class="email"></span>
+        <a href="./login.html" class="logout">Đăng xuất</a>
+      </div>
     </div>
     <div class="container">
-        <div class="title">Danh sách lịch bài kiểm tra</div>
+      <div class="title">Danh sách lịch bài kiểm tra</div>
 
-        <input
-            type="text"
-            class="search-box"
-            placeholder="Tìm kiếm theo bài kiểm tra, môn học..."
-        >
+      <input
+        type="text"
+        class="search-box"
+        placeholder="Tìm kiếm theo bài kiểm tra, môn học..."
+      />
 
-        <div class="empty">
-            Chưa có  bài kiểm tra nào.
-        </div>
+      <div class="empty">Chưa có bài kiểm tra nào.</div>
     </div>
-    <script type = "module">
-         onAuthStateChanged(window.auth, (user) => {
-                if (!user) {
-                    window.location.href = ".login.html";
-                }
-            });
+    <script type="module">
+      // Import the functions you need from the SDKs you need
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-app.js";
+      import {
+        getAuth,
+        onAuthStateChanged,
+      } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-auth.js";
+      // TODO: Add SDKs for Firebase products that you want to use
+      // https://firebase.google.com/docs/web/setup#available-libraries
+
+      // Your web app's Firebase configuration
+      // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+      const firebaseConfig = {
+        apiKey: "AIzaSyBI1MR92b2njVmQ85mTsCA9v1fBgcTaMlg",
+        authDomain: "jsi36-b89f3.firebaseapp.com",
+        projectId: "jsi36-b89f3",
+        storageBucket: "jsi36-b89f3.firebasestorage.app",
+        messagingSenderId: "1022784945169",
+        appId: "1:1022784945169:web:883710fc22f537b7bb45b0",
+        measurementId: "G-HEMJP2YQKG",
+      };
+
+      // Initialize Firebase
+      const app = initializeApp(firebaseConfig);
+      const auth = getAuth(app);
+
+      onAuthStateChanged(auth, (user) => {
+        if (user) {
+          currentUser = user;
+          document.getElementById("userEmail").textContent = user.email;
+          loadRooms();
+        } else {
+          window.location.href = "login.html";
+        }
+      });
     </script>
-    
-</body>
+  </body>
 </html>
