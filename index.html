@@ -42,9 +42,16 @@
       // Import the functions you need from the SDKs you need
       import { initializeApp } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-app.js";
       import {
-        getAuth,
+        getFirestore,
+        collection,
+        addDoc,
+        getDocs,
+        
+      } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-firestore.js";
+      import {getAuth,
         onAuthStateChanged,
       } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-auth.js";
+      
       // TODO: Add SDKs for Firebase products that you want to use
       // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -63,8 +70,22 @@
       // Initialize Firebase
       const app = initializeApp(firebaseConfig);
       const auth = getAuth(app);
+      const db = getFirestore(app);
+      const info = [];
+      let data = await getDocs(collection(db, "Danhsachbaikiemtra"));
+      console.log(data);
 
-      onAuthStateChanged(auth,  (user) => {
+      await data.forEach((item) => {
+        info.push({
+          Loai: item.data().Loai,
+          Lop: item.data().Lop,
+          Mon: item.data().Mon,
+          Ten: item.data().Ten,
+        });
+        console.log(item.data());
+      }); 
+
+      onAuthStateChanged(auth, (user) => {
         if (user) {
           let currentUser = user;
           // document.getElementById("userEmail").textContent = user.email;

@@ -82,7 +82,7 @@
                 placeholder="Ví dụ:Toán,Tiếng Anh,Văn..."
               ></textarea>
             </div>
-            <div class="form-group"> 
+            <div class="form-group">
               <label for="notes">Ghi chú:</label>
               <textarea
                 id="notes"
@@ -110,15 +110,11 @@
       // Import the functions you need from the SDKs you need
       import { initializeApp } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-app.js";
       import {
-        onAuthStateChanged,
-        getAuth,
-        signOut,
-      } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-auth.js";
-      import {
         getFirestore,
         collection,
         addDoc,
-      } from "https://www.gstatic.com/firebasejs/12.7.0/firebase- firestore.js";
+        getDocs,
+      } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-firestore.js";
       // TODO: Add SDKs for Firebase products that you want to use
       // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -136,57 +132,6 @@
 
       // Initialize Firebase
       const app = initializeApp(firebaseConfig);
-      const auth = getAuth(app);
-      const db = getFirestore(app);
-
-      document.getElementById("addBtn").addEventListener("click", async () => {
-        const roomName = document.getElementById("roomName").value;
-        const bookingDate = document.getElementById("bookingDate").value;
-        const startTime = document.getElementById("startTime").value;
-        const endTime = document.getElementById("endTime").value;
-        const purpose = document.getElementById("purpose").value.trim();
-        const notes = document.getElementById("notes").value.trim();
-      });
-      if (!roomName) {
-        alert("Vui lòng chọn phòng học!");
-        return;
-      }
-      if (!bookingDate) {
-        alert("Vui lòng chọn ngày sử dụng!");
-        return;
-      }
-      if (!startTime || !endTime) {
-        alert("Vui lòng nhập thời gian!");
-        return;
-      }
-      if (startTime >= endTime) {
-        alert("Thời gian kết thúc phải sau thời gian bắt đầu!");
-        return;
-      }
-      if (!purpose) {
-        alert("Vui lòng nhập mục đích sử dụng!");
-        return;
-      }
-
-      const bookingData = {
-        roomName: roomName,
-        bookingDate: bookingDate,
-        startTime: startTime,
-        endTime: endTime,
-        purpose: purpose,
-        notes: notes,
-        userId: currentUser.uid,
-        userEmail: currentUser.email,
-        createdAt: new Date().toISOString(),
-      };
-
-      try {
-        await addDoc(collection(db, "bookings"), bookingData);
-        alert("Đặt lịch thành công!");
-        window.location.href = "index.html";
-      } catch (error) {
-        alert("Có lỗi xảy ra: " + error.message);
-      }
     </script>
   </body>
 </html>
