@@ -4,49 +4,20 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link rel="stylesheet" href="./assets/css/index.css" />
   </head>
   <body>
-    <div class="header">
-      <div class="header-left">Hệ thống Quản lý Bài Kiểm Tra</div>
-
-      <div class="header-right">
-        <button
-          onclick="window.location.href = 'indexroom.html'"
-          class="btn btn-orange"
-        >
-          + Đặt bài kiểm tra
-        </button>
-        <button
-          onclick="window.location.href = 'profile.html'"
-          class="btn btn-outline"
-        >
-          Thông tin cá nhân
-        </button>
-        <span class="email"></span>
-        <a href="./login.html" class="logout">Đăng xuất</a>
-      </div>
-    </div>
-    <div class="container">
-      <div class="title">Danh sách bài kiểm tra</div>
-
-      <input
-        type="text"
-        class="search-box"
-        placeholder="Tìm kiếm theo bài kiểm tra, môn học..."
-      />
-
-      <div class="item_cont"></div>
-    </div>
-
     <script type="module">
-      const eleContainer = document.querySelector(".item_cont");
+      //   const eleContainer = document.querySelector(".item_cont");
       // Import the functions you need from the SDKs you need
       import { initializeApp } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-app.js";
       import {
         getFirestore,
         collection,
         addDoc,
+        getDoc,
+        doc,
+        query,
+        where,
         getDocs,
       } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-firestore.js";
       import {
@@ -73,32 +44,41 @@
       const app = initializeApp(firebaseConfig);
       const auth = getAuth(app);
       const db = getFirestore(app);
-      const info = [];
-      let data = await getDocs(collection(db, "Danhsachbaikiemtra"));
-      console.log(data);
+      const urlParams = new URLSearchParams(window.location.search);
+      let questionId = urlParams.get("id");
+      console.log(questionId);
+      const q = query(
+        collection(db, "Danhsachcauhoi"),
+        where("Idbaikiemtra", "==", questionId),
+      );
+
+      const snap = await getDocs(q);
+      let data = await getDoc(
+        doc(db, "Danhsachcauhoi", { Idbaikiemtra: questionId }),
+      );
+      console.log(snap.data());
       data.forEach((doc) => {
-        console.log(doc.data().Mon);
-        eleContainer.innerHTML += `
+        console.log(doc.data());
+        //     eleContainer.innerHTML += `
 
-     
-    <div>
-      <a class ="aa" href ="./deltais.html?id=${doc.id}"><div class="card">
-        <div class="card-header">
-        <h3>${doc.data().Mon}</h3>
-      </div>
+        // <div>
+        //   <a class ="aa" href ="./deltais.html?id=${doc.id}"><div class="card">
+        //     <div class="card-header">
+        //     <h3>${doc.data().Mon}</h3>
+        //   </div>
 
-      <hr>
+        //   <hr>
 
-      <div class="card-body">
-        <p>${doc.data().Loai}</p>
-        <p>${doc.data().Lop}</p>
-        <p>${doc.data().Ten}</p>
-      </div>
+        //   <div class="card-body">
+        //     <p>${doc.data().Loai}</p>
+        //     <p>${doc.data().Lop}</p>
+        //     <p>${doc.data().Ten}</p>
+        //   </div>
 
-      <hr></a>
-    </div> 
-        
-        `;
+        //   <hr></a>
+        // </div>
+
+        //     `;
       });
 
       onAuthStateChanged(auth, (user) => {
