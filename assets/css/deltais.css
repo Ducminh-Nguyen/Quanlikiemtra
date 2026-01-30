@@ -1,0 +1,32 @@
+.card {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+  padding: 16px;
+  font-family: Arial, sans-serif;
+  grid-template-columns: auto auto;
+  gap: 10px;
+}
+
+.card-header {
+  font-weight: 600;
+  margin-bottom: 12px;
+  background-color: aqua;
+}
+.list {
+  list-style: none;
+  padding: 0;
+}
+
+.list li {
+  padding: 10px 12px;
+  border-left: 4px solid #e5e7eb;
+  margin-bottom: 6px;
+  color: #9ca3af;
+}
+
+.list li.chosen {
+  border-left-color:#e5e7eb;
+  color: #000;
+  font-weight: 600;
+}

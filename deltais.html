@@ -4,8 +4,169 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <link rel="stylesheet" href="./assets/css/deltais.css" />
   </head>
   <body>
+    <div class="card">
+      <div class="card-header">
+        <span class="num">#1</span>
+      </div>
+
+      <div class="card-body">
+        <h3></h3>
+
+        <ul class="list">
+          <li></li>
+          <li></li>
+          <li class="chosen"></li>
+          <li></li>
+        </ul>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header">
+        <span class="num">#2</span>
+      </div>
+
+      <div class="card-body">
+        <h3></h3>
+
+        <ul class="list">
+          <li></li>
+          <li></li>
+          <li class="chosen"></li>
+          <li></li>
+        </ul>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header">
+        <span class="num">#3</span>
+      </div>
+
+      <div class="card-body">
+        <h3></h3>
+
+        <ul class="list">
+          <li></li>
+          <li></li>
+          <li class="chosen"></li>
+          <li></li>
+        </ul>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header">
+        <span class="num">#4</span>
+      </div>
+
+      <div class="card-body">
+        <h3></h3>
+
+        <ul class="list">
+          <li></li>
+          <li></li>
+          <li class="chosen"></li>
+          <li></li>
+        </ul>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header">
+        <span class="num">#5</span>
+      </div>
+
+      <div class="card-body">
+        <h3></h3>
+
+        <ul class="list">
+          <li></li>
+          <li></li>
+          <li class="chosen"></li>
+          <li></li>
+        </ul>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header">
+        <span class="num">#6</span>
+      </div>
+
+      <div class="card-body">
+        <h3></h3>
+
+        <ul class="list">
+          <li></li>
+          <li></li>
+          <li class="chosen"></li>
+          <li></li>
+        </ul>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header">
+        <span class="num">#7</span>
+      </div>
+
+      <div class="card-body">
+        <h3></h3>
+
+        <ul class="list">
+          <li></li>
+          <li></li>
+          <li class="chosen"></li>
+          <li></li>
+        </ul>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header">
+        <span class="num">#8</span>
+      </div>
+
+      <div class="card-body">
+        <h3></h3>
+
+        <ul class="list">
+          <li></li>
+          <li></li>
+          <li class="chosen"></li>
+          <li></li>
+        </ul>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header">
+        <span class="num">#9</span>
+      </div>
+
+      <div class="card-body">
+        <h3></h3>
+
+        <ul class="list">
+          <li></li>
+          <li></li>
+          <li class="chosen"></li>
+          <li></li>
+        </ul>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header">
+        <span class="num">#10</span>
+      </div>
+
+      <div class="card-body">
+        <h3></h3>
+
+        <ul class="list">
+          <li></li>
+          <li></li>
+          <li class="chosen"></li>
+          <li></li>
+        </ul>
+      </div>
+    </div>
     <script type="module">
       //   const eleContainer = document.querySelector(".item_cont");
       // Import the functions you need from the SDKs you need
@@ -47,18 +208,12 @@
       const urlParams = new URLSearchParams(window.location.search);
       let questionId = urlParams.get("id");
       console.log(questionId);
-      const q = query(
-        collection(db, "Danhsachcauhoi"),
-        where("Idbaikiemtra", "==", questionId),
-      );
+      const testDoc = await getDoc(doc(db, "Danhsachbaikiemtra", questionId));
+      const testData = testDoc.data();
+      console.log("Test data:", testData);
 
-      const snap = await getDocs(q);
-      let data = await getDoc(
-        doc(db, "Danhsachcauhoi", { Idbaikiemtra: questionId }),
-      );
-      console.log(snap.data());
-      data.forEach((doc) => {
-        console.log(doc.data());
+      testData.forEach((doc) => {
+        console.log(doc);
         //     eleContainer.innerHTML += `
 
         // <div>
